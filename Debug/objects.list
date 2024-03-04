@@ -1,4 +1,5 @@
 "./Core/Src/main.o"
+"./Core/Src/sh1106_drv.o"
 "./Core/Src/stm32l0xx_hal_msp.o"
 "./Core/Src/stm32l0xx_it.o"
 "./Core/Src/stm32l0xx_nucleo.o"
