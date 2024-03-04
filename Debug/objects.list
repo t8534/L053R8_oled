@@ -1,3 +1,8 @@
+"./Core/Src/disp_lib.o"
+"./Core/Src/f1206.o"
+"./Core/Src/f1608.o"
+"./Core/Src/f1612.o"
+"./Core/Src/f3216.o"
 "./Core/Src/main.o"
 "./Core/Src/sh1106_drv.o"
 "./Core/Src/stm32l0xx_hal_msp.o"
