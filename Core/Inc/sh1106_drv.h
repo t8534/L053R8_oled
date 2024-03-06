@@ -60,37 +60,58 @@
 
 #include <stdint.h>
 
-// Pinout for Nucleo L053R8 - OLED 1.3
+// SPI1 settings:
+//
+// Basic parameters:
+//     Mode: Full-Duplex Master
+//     Hardware NNS signal: Disabled
+//     Frame format: Motorola
+//     Data size: 8 bits
+//     First bit: MSB first
+//
+// Clock parameters:
+//     Prescaler (for baud rate): 2
+//     Baud rate: 1.0485 MBits/s
+//     Clock Polarity (CPOL): High
+//     Clock Phase (CPHA): 2 Edge
+//
+// Advanced parameters:
+//     CRC calculation: Disabled
+//     NSS signal type: Software
+//
+// Pinout:
+//    PB3 - SP1_SCK, Alternate function push/pull, no pull up and pull down, max output speed High
+//    PB4 - SP1_MISO, Alternate function push/pull, no pull up and pull down, max output speed High
+//    PB5 - SP1_MOSI, Alternate function push/pull, no pull up and pull down, max output speed High
+//    PC2 - OLED_CS, GPIO output level Low, GPIO mode - output push pull, no pull up and pull down, max output speed Low
 
-// OLED_RST_PIN - PORT C, pin 0
-// OLED_DC_PIN  - PORT C, pin 1
-// OLED_CS_PIN  - PORT C, pin 2
-// SPI_MOSI     - PORT B, pin 15
-// SPI_SCK      - PORT B, pin 14
+// OLED display related control pinout:
+//     PC0 - OLED_RES, GPIO output level Low, GPIO mode - output push pull, no pull up and pull down, max output speed Low
+//     PC1 - OLED_DC, GPIO output level Low, GPIO mode - output push pull, no pull up and pull down, max output speed Low
+
+// Connection Nucleo - Oled 1.3
+//
+// PB3 (SP1_SCK) ------------------> CLK
+// PB4 (SP1_MISO)------------------> not connected
+// PB5 (SP1_MOSI)------------------> DIN
+// PC2 (OLED_CS)-------------------> CS
+// PC0 (OLED_RES)------------------> RES
+// PC1 (OLED_DC)-------------------> D/C
+//
 
 
 #define DISP_WIDTH   128
 #define DISP_HEIGHT   64
 
 
-//todo
-/*
-#define OLED_RST  9 
-#define OLED_DC   8
-#define OLED_CS  10
-#define SPI_MOSI 11     // connect to the DIN pin of OLED 
-#define SPI_SCK  13     // connect to the CLK pin of OLED 
-*/
-
-//test
 //todo change to enum after it will works.
 #define OLED_RST  9 
 #define OLED_DC   8
 #define OLED_CS  10
-#define SPI_MOSI 11     /* connect to the DIN pin of OLED */
-#define SPI_SCK  13     /* connect to the CLK pin of OLED */
+#define SPI_MOSI 11
+#define SPI_SCK  13
 
-// todfo: after it will work change to SET/RESET
+// todo: after it will work change to SET/RESET
 #define LOW       0
 #define HIGH      1
 

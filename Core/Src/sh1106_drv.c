@@ -28,8 +28,6 @@
 //
 
 
-
-
 #include "sh1106_drv.h"
 #include "main.h"
 
