@@ -45,6 +45,13 @@
   *
   *
   *
+  * Following datasheet OLED 1.3" from Waveshare, SPI settings:
+  *
+  * The clock is Idle High, and Active - Low = CPOL = 1
+  * The sample is on the rising edge, which is the second edge = CPHA = 1
+  * SPI Mode = 3, if CPOL = 1 and CPHA = 1
+  * Clock cycle 250ns = 4 MHz.
+  *
   */
 
 
@@ -53,6 +60,7 @@
 
 #include <stdint.h>
 
+// Pinout for Nucleo L053R8 - OLED 1.3
 
 // OLED_RST_PIN - PORT C, pin 0
 // OLED_DC_PIN  - PORT C, pin 1

@@ -22,13 +22,6 @@
   */
 
 //
-// Following datasheet OLED 1.3" from Waveshare, SPI settings:
-// The clock is Idle High, and Active - Low = CPOL = 1
-// The sample is on the rising edge, which is the second edge = CPHA = 1
-// SPI Mode = 3, if CPOL = 1 and CPHA = 1
-// Clock cycle 250ns = 4 MHz.
-//
-//
 // TODO:
 // 1.
 // Change int to uint
@@ -37,19 +30,13 @@
 
 
 
-//#include <stdio.h>        //atmel
-//#include <util/delay.h>   //atmel
 #include "sh1106_drv.h"
-//#include "mcal_spi.h"     //atmel
-//#include "mcal_gpio.h"    //atmel
-
-//#include "stm32l0xx_hal.h"    // delay()
 #include "main.h"
 
 
 extern SPI_HandleTypeDef hspi1;
 
-//TODO
+
 
 #define OLED_CS_RESET		HAL_GPIO_WritePin(GPIOC, OLED_CS_Pin, GPIO_PIN_RESET)
 #define OLED_CS_SET			HAL_GPIO_WritePin(GPIOC, OLED_CS_Pin, GPIO_PIN_SET)
@@ -86,13 +73,14 @@ void digitalWrite(uint8_t pin, uint8_t state)
 }
 
 
-void SPIWrite(uint8_t *buffer, int bufferLength) {
-  //MCAL_SPI_Tx(buffer, (uint16_t)bufferLength);    // avr
-  HAL_SPI_Transmit(&hspi1, buffer, bufferLength, 1000);  // 1000 ms timeout
+void SPIWrite(uint8_t *buffer, int bufferLength)
+{
+	HAL_SPI_Transmit(&hspi1, buffer, bufferLength, 1000);  // 1000 ms timeout
 }
 
 
-void command(uint8_t cmd){
+void command(uint8_t cmd)
+{
     digitalWrite(OLED_DC, LOW);  // Command mode
     SPIWrite(&cmd, 1);
 }
@@ -100,38 +88,20 @@ void command(uint8_t cmd){
 
 void SH1106_init()
 {
+	//todo: Are all time delays necessary, or with existing values ?
 
-/*
-    // At nucleo version SPI is initialized outside of this file.
-	MCAL_SPI_Init(); //todo: what about deinit ?
-    //HAL_Delay(10);
-	_delay_ms(10);
-    MCAL_GPIO_Init(); //todo: what about deinit ?	
-    //HAL_Delay(10);
-	_delay_ms(10);
-*/
 	HAL_Delay(20);
 	
 	  //arek add, set CS high to init interface
     digitalWrite(OLED_CS, HIGH);  // LOW - data can be send, HIGH - interface init
-    //HAL_Delay(100);  // arek: add because stm is quicker than atmega
-	//_delay_ms(100);
 	HAL_Delay(100);
 	
 	
     digitalWrite(OLED_CS, LOW);  // LOW - data can be send, HIGH - interface init
-    //HAL_Delay(10);  // arek: add because stm is quicker than atmega
-    //_delay_ms(10);
     HAL_Delay(10);
 	digitalWrite(OLED_RST, HIGH);
-    //delay(10);
-    //HAL_Delay(10);
-	//_delay_ms(10);
 	HAL_Delay(10);
     digitalWrite(OLED_RST, LOW);  // Reset active - initialization
-    //delay(10);
-    //HAL_Delay(10);
-	//_delay_ms(10);
 	HAL_Delay(10);
     digitalWrite(OLED_RST, HIGH);
     

@@ -6,7 +6,6 @@
 
 
 #include <stdint.h>
-//#include <avr/pgmspace.h>
 #include "f1206.h"
 #include "sh1106_drv.h"
 
@@ -23,9 +22,7 @@ Font_t Font1206 = {
 };
 
 
-//todo: nucleo, how to load to flash ?
-//todo static ?
-//const uint8_t Font1206Glyphs[95][DISP_F1206_BYTES_PER_FONT] PROGMEM = {
+// Automatically located in the .rodata linker section, and stored in the flash memory.
 const uint8_t Font1206Glyphs[95][DISP_F1206_BYTES_PER_FONT] = {
 
     {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},/*" ",0*/

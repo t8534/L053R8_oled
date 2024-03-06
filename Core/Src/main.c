@@ -27,8 +27,8 @@
 #include "f1608.h"
 #include "f3216.h"
 #include "disp_lib.h"
-
 #include "sh1106_drv.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -111,30 +111,18 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
-  //Example SPI call
-  //HAL_SPI_TransmitReceive(&SpiHandle, (uint8_t*)aTxBuffer, (uint8_t *)aRxBuffer, BUFFERSIZE, 5000);
-  //HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-  //HAL_SPI_Transmit(&hspi1, txBuffer, BUFFERSIZE, 1000);  // 1000 ms timeout
-
-
-
 	SH1106_init();
 	SH1106_clearScreen();
 
 	// Set default values
-  // UI - ok ready.
-
 	DISP_drawString(2, 8, rpm_default, DISP_FONT1612, DISP_FONT_POSITIVE);
 	DISP_drawString(18, 40, temperat_default, DISP_FONT1612, DISP_FONT_POSITIVE);
 	DISP_drawString(82, 8, volt_default, DISP_FONT1608, DISP_FONT_POSITIVE);
 	DISP_drawString(90, 40, mth_default, DISP_FONT1608, DISP_FONT_POSITIVE);
 
 	SH1106_updateScreen();
-	//_delay_ms(4000);  // 4s
 	HAL_Delay(4000);
-	SH1106_clearScreen();  // TODO: check is it not working ?
-
-
+	SH1106_clearScreen();
 
   /* USER CODE END 2 */
 

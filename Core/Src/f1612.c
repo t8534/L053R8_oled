@@ -6,7 +6,6 @@
 
 
 #include <stdint.h>
-//#include <avr/pgmspace.h>
 #include "f1612.h"
 #include "sh1106_drv.h"
 
@@ -23,9 +22,7 @@ Font_t Font1612 = {
 };
 
 
-//todo: nucleo, how to load to flash ?
-//todo what about static
-//const uint8_t Font1612Glyphs[11][DISP_F1612_BYTES_PER_FONT] PROGMEM = {
+// Automatically located in the .rodata linker section, and stored in the flash memory.
 const uint8_t Font1612Glyphs[11][DISP_F1612_BYTES_PER_FONT] = {
 
     {0x00,0x00,0x3F,0xFC,0x3F,0xFC,0x30,0x0C,0x30,0x0C,0x30,0x0C,0x30,0x0C,0x30,0x0C,
@@ -82,7 +79,7 @@ void DISP_DrawCharFont1612(uint16_t x, uint16_t y, uint8_t ascii, DISP_FontMode_
     uint8_t ch = 0;
 
 
-    if (ascii < '0' | ascii > ':')
+    if ((ascii < '0') | (ascii > ':'))
     	return;
 
     ch = ascii - '0';

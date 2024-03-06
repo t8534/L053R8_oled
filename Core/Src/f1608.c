@@ -4,7 +4,6 @@
  */
 
 #include <stdint.h>
-//#include <avr/pgmspace.h>
 #include "f1608.h"
 #include "sh1106_drv.h"
 
@@ -21,11 +20,7 @@ Font_t Font1608 = {
 };
 
 
-//todo: nucleo, how to load to flash ?
-//todo: what about static
-// [number of fonts][bytes per font]
-// Each Raw describe single glyph, the number of bytes in the glybh is defined by  the number of columns = 16
-//const uint8_t Font1608Glyphs[95][DISP_F1608_BYTES_PER_FONT] PROGMEM = {
+// Automatically located in the .rodata linker section, and stored in the flash memory.
 const uint8_t Font1608Glyphs[95][DISP_F1608_BYTES_PER_FONT] = {
 
     {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},/*" ",0*/
